@@ -1,0 +1,3 @@
+	K_ano	K_ne
+P_ano	70	60
+P_ne	50	20
