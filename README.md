@@ -1,8 +1,32 @@
 # R (language)
 
-`2020/09/19 Jaroslav Langer`
+`2020/10/01 Jaroslav Langer`
 
 Repository for learning the r language.
+
+## Content
+- [Install R (ubuntu)](#install-r-(ubuntu))
+- [Run R](#run-r)
+- [Jupyter notebook](#jupyter-notebook)
+- [Comments](#comments)
+- [Printing](#printing)
+- [Variables](#variables)
+- [Operators](#operators)
+- [Vectors](#vectors)
+- [List](#list)
+- [](#)
+- [](#)
+- [Length and dim](#length-and-dim)
+- [Strings](#strings)
+- [Mathematical functions](#mathematical-functions)
+- [Conditions](#conditions)
+- [Loops](#loops)
+- [Functions](#functions)
+- [Base package](#base-package)
+- [Functional programming](#functional-programming)
+- [TODO](#todo)
+- [](#)
+
 
 ## Install R (ubuntu)
 
@@ -34,17 +58,29 @@ IRkernel::installspec(user = FALSE)
 
 [source](https://irkernel.github.io/installation/#linux-panel)
 
-## Start and quit
+## Run R
 
-```shell
+### R in terminal
+
+```sh
+# Start R in terminal
 R
 ```
 
 ```r
+# Quit
 q()
 ```
 
-## Quick look to the documentation
+### Run R scripts
+
+```sh
+Rscript r_commands.r
+```
+
+## Jupyter notebook
+
+### Quick look to the documentation
 
 ```r
 ? almost_anything
@@ -57,7 +93,17 @@ Exit on press "q"
 # classical comment
 ```
 
-## Assigning variables
+## Printing
+
+```r
+# just write anything you want to print
+"Anything"
+print("Anything")
+```
+
+## Variables
+
+### Assigning variables
 
 ```r
 my_var <- 7
@@ -65,15 +111,7 @@ my_var <- 7
 my_var <<- 10 # later more
 ```
 
-## Printing - just write anything you want to print
-
-```r
-VAR
-# funcion print
-print(VAR)
-```
-
-## Variable types
+### Variable types
 
 ```r
 my_integer <- 1
@@ -82,7 +120,34 @@ my_string <- "1.1 km"
 my_boolean <- FALSE
 ```
 
-### As something
+### Typeof, mode, class
+
+typeof - The Type of an Object
+
+```r
+# Types of variables
+typeof(1) # double, WAT?
+typeof(as.integer(1)) # integer, ok
+```
+
+mode - The (Storage) Mode of an Object
+
+```r
+# Maybe modes of object better
+mode(1) # numeric
+mode(as.integer(1)) # numeric
+```
+
+class - Object Classes
+
+```r
+# Class
+class(1) # 'numeric'
+```
+
+[Yet don't understand, but this link looks good](https://stackoverflow.com/questions/35445112/what-is-the-difference-between-mode-and-class-in-r)
+
+### Convert variable types
 
 ```r
 int <- '1'
@@ -90,26 +155,12 @@ long <- 1L
 
 as.integer(int)
 as.double(1L)
+as.character(1L)
 ```
 
-## Typeof and mode
+## Operators
 
-```r
-# Types of variables
-typeof(1) # double, WAT?
-typeof(as.integer(1)) # integer, ok
-
-# Maybe modes of object better
-mode(1) # numeric
-mode(as.integer(1)) # numeric
-
-# Class
-class(1) # 'numeric'
-```
-
-[Yet don't understand, but this link looks good](https://stackoverflow.com/questions/35445112/what-is-the-difference-between-mode-and-class-in-r)
-
-## Mathematical operators
+### Mathematical operators
 
 ```r
 # + - * / ()
@@ -122,7 +173,7 @@ class(1) # 'numeric'
 123 %/% 7
 ```
 
-## Logical operators
+### Logical operators
 
 ```r
 TRUE == T
@@ -147,13 +198,19 @@ identical(1.0, as.integer(1.0)) # FALSE
 vector('numeric', len)
 ```
 
-## Replicates the given values by n
+### Revert order of vector values
+
+```r
+rev(1:10)
+```
+
+### Replicates the given values by n
 
 ```r
 rep(1, 5) # 1 1 1 1 1
 ```
 
-## Initialize by types
+### Initialize by types
 
 ```r
 logical(5)
@@ -183,7 +240,7 @@ VECTOR  <- 1:7
 VECTOR  <- 2:-2
 ```
 
-### Accessing arrays
+### Accessing vectors
 
 Indices, slices and masks
 
@@ -192,7 +249,8 @@ my_vector <- seq(5)
 my_vector[5]
 my_vector[c(1, 4)]
 my_vector[seq(1, 3)]
-my_vector[c(TRUE, TRUE, FALSE, TRUE, FALSE])
+mask <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+my_vector[mask]
 my_vector[c(FALSE, TRUE)] # 2 4 (repeats F, T and again F, T ...)
 my_vector[c(FALSE, TRUE) & c(T, T)]
 my_vector[-2]
@@ -213,6 +271,10 @@ ll[1]
 # Access value of the item
 ll[[1]]
 ```
+
+## Matrix
+
+## Factors
 
 ## Length and dim
 
@@ -256,10 +318,16 @@ which(letters == 'e') # 5
 
 ## Mathematical functions
 
-```
+```r
 sum(c(1,2,3,4))
 
 mean(c(1,2,3,4))
+
+ceiling(log2(118))
+
+floor(log(35))
+
+abs(-320)
 ```
 
 ## Conditions
@@ -298,12 +366,28 @@ function_name <- function(arg_1, arg_2)
 }
 ```
 
-## Unique and Sort
+## Base package
+
+### Unique
 
 ```r
 unique(c('ba', 'ab', 'ab', 'aa')) # "ba" "ab" "aa"
-sort(unique(c('ba', 'ab', 'ab', 'aa'))) # "aa" "ab" "ba"
 ```
+
+### Sort and Order
+
+```r
+# Order items
+sort(unique(c('ba', 'ab', 'ab', 'aa'))) # "aa" "ab" "ba"
+# Return indices of sorted array
+order(unique(c('ba', 'ab', 'ab', 'aa')))
+```
+
+## Functional programming
+
+Lambda, Map, Reduce, Filter
+
+[link](https://helloacm.com/r-programming-tutorial-map-reduce-filter-and-lambda-examples/)
 
 ## TODO
 
@@ -331,4 +415,6 @@ kvantil<-qt(1-alfa/2, length(table)-1 )
 ifelse(abs(statistika)>kvantil, "zamitame H_0", "nezamitame H_0")
 
 test_r<-t.test(table, mu=100, alternative ="less", conf.level=0.95)
+
+https://www.rdocumentation.org/collaborators/name/R-core%20R-core@R-project.org
 ```
