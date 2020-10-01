@@ -1,1 +1,0 @@
-# Aplied statictics course from UCT
